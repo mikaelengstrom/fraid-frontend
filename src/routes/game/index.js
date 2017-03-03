@@ -8,19 +8,24 @@
  */
 
 import React from 'react';
+import Game from './Game';
 import Layout from '../../components/Layout';
-import Login from './Login';
 
-const title = 'Log In';
+import { verifyGameRequest } from '../../actions/game';
 
 export default {
 
-  path: '/login',
+  path: '/game/:gameId',
 
-  action() {
+  async action(context) {
+    const gameId = context.params.gameId;
+    if (context.store.getState().game.gameId !== gameId) {
+      context.store.dispatch(verifyGameRequest({ gameId }));
+    }
+
     return {
-      title,
-      component: <Layout><Login title={title} /></Layout>,
+      title: 'Game',
+      component: <Layout><Game /></Layout>,
     };
   },
 

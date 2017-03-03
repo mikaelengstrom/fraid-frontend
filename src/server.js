@@ -91,8 +91,6 @@ app.get('*', async (req, res, next) => {
   try {
     const store = configureStore({
       user: req.user || null,
-    }, {
-      cookie: req.headers.cookie,
     });
 
     store.dispatch(setRuntimeVariable({

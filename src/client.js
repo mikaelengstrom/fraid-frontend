@@ -31,7 +31,7 @@ const context = {
   },
   // Initialize a new Redux store
   // http://redux.js.org/docs/basics/UsageWithReact.html
-  store: configureStore(window.APP_STATE, { history }),
+  store: configureStore(window.APP_STATE),
 };
 
 // Switch off the native scroll restoration behavior and handle it manually

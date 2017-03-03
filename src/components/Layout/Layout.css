@@ -25,6 +25,15 @@ html {
   line-height: 1.375; /* ~22px */
 }
 
+body {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
 a {
   color: #0074c2;
 }

@@ -8,37 +8,38 @@
  */
 
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+
 import s from './Home.css';
+
+import Link from '../../components/Link';
+import { newGameRequest } from '../../actions/game';
+
 
 class Home extends React.Component {
   static propTypes = {
-    news: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
-      content: PropTypes.string,
-    })).isRequired,
+    newGameRequest: PropTypes.func.isRequired,
   };
 
   render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>React.js News</h1>
-          {this.props.news.map(item => (
-            <article key={item.link} className={s.newsItem}>
-              <h1 className={s.newsTitle}><a href={item.link}>{item.title}</a></h1>
-              <div
-                className={s.newsDesc}
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: item.content }}
-              />
-            </article>
-          ))}
+          <h1>Welcome to Fraid</h1>
+
+          <Link to="/" onClick={this.props.newGameRequest}>
+            Start a new game
+          </Link>
+
         </div>
       </div>
     );
   }
 }
 
-export default withStyles(s)(Home);
+function mapDispatchToProps(dispatch) {
+  return { newGameRequest: () => dispatch(newGameRequest()) };
+}
+
+export default connect(null, mapDispatchToProps)(withStyles(s)(Home));
